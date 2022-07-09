@@ -108,10 +108,9 @@ normal_keymap("<f1>", "<cmd>NvimTreeToggle<cr>", "toggle NvimTree with f1")
 -- Bufferline
 normal_keymap("<leader>bp", "<cmd>BufferLinePick<cr>", "pick a buffer")
 
--- Neorg journal keys
-normal_keymap("<leader>jt", "<cmd>Neorg journal today<cr>", "create a journal entry for today")
-normal_keymap("<leader>jy", "<cmd>Neorg journal yesterday<cr>", "create a journal entry for yesterday")
-normal_keymap("<leader>jm", "<cmd>Neorg journal tomorrow<cr>", "create a journal entry for tomorrow")
+-- Vimwiki diary notes
+normal_keymap("<leader>dn", "<cmd>VimwikiMakeDiaryNote<cr>", "create diary note for today")
+normal_keymap("<leader>dy", "<cmd>VimwikiMakeYesterdayDiaryNote<cr>", "create diary note for yesterday")
 
 -- find files in nvim config dir
 normal_keymap("<leader>fc", function()
@@ -122,14 +121,14 @@ normal_keymap("<leader>fc", function()
   }))
 end, "open file finder for nvim configs")
 
--- find Neorg files
-normal_keymap("<leader>fn", function()
+-- find Vimwiki files
+normal_keymap("<leader>fw", function()
   return require("telescope.builtin").find_files(require("telescope.themes").get_dropdown({
     previewer = false,
-    cwd = "~/notes",
-    prompt_title = "find Neorg config files",
+    cwd = "~/vimwiki",
+    prompt_title = "find vimwiki files",
   }))
-end, "open file finder for Neorg configs")
+end, "open file finder for vimwiki")
 
 -- live grep nvim config dir
 normal_keymap("<leader>fC", function()
@@ -142,16 +141,16 @@ normal_keymap("<leader>fC", function()
   })
 end, "live grep vim config")
 
--- live grep Neorg files
-normal_keymap("<leader>fN", function()
+-- live grep Vimwiki files
+normal_keymap("<leader>fW", function()
   return require("telescope.builtin").live_grep({
     shorten_path = false,
-    cwd = "~/notes",
-    search_dirs = { "~/notes" },
-    prompt_title = "live grep neorg files",
+    cwd = "~/vimwiki",
+    search_dirs = { "~/vimwiki" },
+    prompt_title = "live grep vimwiki files",
     hidden = false,
   })
-end, "live grep neorg files")
+end, "live grep vimwiki files")
 
 -- Format with \f
 normal_keymap("\\f", "<cmd>Format<cr>", "Run LSP formatter")

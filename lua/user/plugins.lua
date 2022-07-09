@@ -144,9 +144,8 @@ return packer.startup(function(use)
   -- Symbol Outline
   use("simrat39/symbols-outline.nvim")
 
-  -- Neorg note taking
-  use("vhyrro/neorg-telescope")
-  use("nvim-neorg/neorg")
+  -- Vimwiki
+  use("vimwiki/vimwiki")
 
   -- ThePrimeagen's Refactoring
   -- use("ThePrimeagen/refactoring.nvim")
