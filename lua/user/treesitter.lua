@@ -14,10 +14,27 @@ configs.setup({
     additional_vim_regex_highlighting = true,
   },
 
+  indent = {
+    enable = true,
+    disable = { "go", "python" },
+  },
+
   -- enable autopairs magic
   autopairs = {
     enable = true,
   },
+
+  -- more textobjects
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+      },
+    },
+  },
+
   playground = {
     enable = true,
     disable = {},

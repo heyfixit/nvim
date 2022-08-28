@@ -93,6 +93,9 @@ return packer.startup(function(use)
   -- Auto closing parens and brackets
   use("windwp/nvim-autopairs")
 
+  -- Auto close and help rename html tags
+  use("windwp/nvim-ts-autotag")
+
   -- Easy commenting
   use("numToStr/Comment.nvim")
   -- Context-aware commenting for more complex DSLs and such like TSX files
@@ -146,6 +149,25 @@ return packer.startup(function(use)
 
   -- Vimwiki
   use("vimwiki/vimwiki")
+
+  -- Nvim DAP - debugging
+  use("mfussenegger/nvim-dap")
+  use("leoluz/nvim-dap-go")
+  use("rcarriga/nvim-dap-ui")
+  use("theHamsta/nvim-dap-virtual-text")
+  use("nvim-telescope/telescope-dap.nvim")
+
+  -- More Text Objects
+  use("nvim-treesitter/nvim-treesitter-textobjects")
+
+  -- Doc Generator i.e. jsdoc / javadoc etc
+  use("danymat/neogen")
+
+  -- Rust
+  use("simrat39/rust-tools.nvim")
+
+  -- Copilot
+  use("github/copilot.vim")
 
   -- ThePrimeagen's Refactoring
   -- use("ThePrimeagen/refactoring.nvim")

@@ -23,5 +23,6 @@ null_ls.setup({
     -- formatting.yapf,
     formatting.stylua,
     diagnostics.flake8,
+    formatting.rustfmt
   },
 })

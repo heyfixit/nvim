@@ -43,3 +43,7 @@ end
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
+vim.cmd [[set iskeyword+=W]]
+vim.cmd [[set iskeyword+=_]]
+vim.cmd "command Z w | qa"
+vim.cmd "cabbrev wqa Z"

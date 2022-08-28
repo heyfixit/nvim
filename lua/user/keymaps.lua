@@ -38,6 +38,27 @@ keymap("", "<Space>", "<Nop>", "Leader Key Stuff")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Source current file
+normal_keymap("<leader><leader>x", "<cmd>source %<cr>", "source current lua file")
+
+-- DAP Keys
+normal_keymap("<F5>", "<cmd>lua require'dap'.continue()<cr>", "debugger continue, or debugger start")
+normal_keymap("<F6>", "<cmd>lua require'dap'.step_into()<cr>", "dap step into")
+normal_keymap("<F7>", "<cmd>lua require'dap'.step_over()<cr>", "dap step over")
+normal_keymap("<F8>", "<cmd>lua require'dap'.step_out()<cr>", "dap step out")
+normal_keymap("<leader>b", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "dap toggle breakpoint")
+normal_keymap(
+  "<leader>B",
+  "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
+  "dap set breakpoint condition"
+)
+normal_keymap(
+  "<leader>lp",
+  "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>",
+  "dap set breakpoint log point"
+)
+normal_keymap("<leader>dr", "<cmd>lua require'dap'.repl.open()<cr>", "dap open repl")
+
 -- Normal Mode --
 normal_keymap("<C-h>", "<C-w>h", "jump to left split")
 normal_keymap("<C-j>", "<C-w>j", "jump to lower split")
@@ -55,6 +76,9 @@ normal_keymap("<S-l>", ":bnext<CR>", "go to next buffer")
 normal_keymap("<S-h>", ":bprev<CR>", "go to previous buffer")
 normal_keymap("+", ":bnext<CR>", "go to next buffer")
 normal_keymap("_", ":bprev<CR>", "go to previous buffer")
+
+-- Toggle Lazy Git
+normal_keymap("<leader>lg", "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "toggle lazygit")
 
 -- BBye buffer closing
 -- Difference between delete and wipeout: delete keeps buffer in jump list so ctrl-o brings it back
@@ -106,7 +130,7 @@ normal_keymap("<leader>fF", "<cmd>Telescope live_grep<cr>", "open live_grep")
 normal_keymap("<f1>", "<cmd>NvimTreeToggle<cr>", "toggle NvimTree with f1")
 
 -- Bufferline
-normal_keymap("<leader>bp", "<cmd>BufferLinePick<cr>", "pick a buffer")
+normal_keymap("<leader>fb", "<cmd>BufferLinePick<cr>", "pick a buffer")
 
 -- Vimwiki diary notes
 normal_keymap("<leader>dn", "<cmd>VimwikiMakeDiaryNote<cr>", "create diary note for today")
@@ -157,3 +181,6 @@ normal_keymap("\\f", "<cmd>Format<cr>", "Run LSP formatter")
 
 -- Telescope projects with fp
 normal_keymap("<leader>fp", "<cmd>Telescope projects<cr>", "Telescope recent projects")
+
+-- Neogen
+normal_keymap("<leader>nf", ":lua require('neogen').generate()<cr>", "Generate doc for current scope")
