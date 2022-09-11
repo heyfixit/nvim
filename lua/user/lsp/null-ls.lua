@@ -13,7 +13,7 @@ null_ls.setup({
   sources = {
     -- Disabled for now, until it plays nicely with plain javascript and eslint language server
     -- code_actions.refactoring,
-    formatting.prettier_d_slim,
+    formatting.prettierd,
     diagnostics.markdownlint,
     diagnostics.misspell,
     diagnostics.write_good,

@@ -5,12 +5,23 @@
 -- M here will export 3 things - setup, on_attach, and capabilities
 local M = {}
 
+local function attach_navic(client, bufnr)
+  vim.g.navic_silence = true
+  local status_ok, navic = pcall(require, "nvim-navic")
+  if not status_ok then
+    return
+  end
+  navic.attach(client, bufnr)
+end
+
 M.setup = function()
+  local icons = require("user.icons")
+
   local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignError", text = icons.diagnostics.Error },
+    { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
+    { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
+    { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
   }
 
   for _, sign in ipairs(signs) do
@@ -106,15 +117,20 @@ end
 
 -- on_attach function for all LSPs
 M.on_attach = function(client, bufnr)
-
-  if client.name ~= "null-ls" then
-    -- force document formatting off with typescriptserver
-    -- we use null-ls instead to run prettier
-    client.server_capabilities.document_formatting = false
-  end
-
   -- set a bunch of buffer keymaps
   lsp_keymaps(bufnr)
+  attach_navic(client, bufnr)
+
+  if client.name == "tsserver" then
+    client.server_capabilities.document_formatting = false
+    require("lsp-inlayhints").on_attach(client, bufnr)
+  end
+
+  --[[ if client.name ~= "null-ls" then ]]
+  --[[   -- force document formatting off with typescriptserver ]]
+  --[[   -- we use null-ls instead to run prettier ]]
+  --[[   client.server_capabilities.document_formatting = false ]]
+  --[[ end ]]
 
   -- highlights references on hover
   lsp_highlight_document(client)
